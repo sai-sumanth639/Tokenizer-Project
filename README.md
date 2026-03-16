@@ -2,7 +2,6 @@
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue)
 ![Transformers](https://img.shields.io/badge/HuggingFace-Transformers-yellow)
-![License](https://img.shields.io/badge/License-MIT-green)
 ![Status](https://img.shields.io/badge/Project-Learning-orange)
 
 A simple Python project that demonstrates how different NLP tokenizers split the same input text into tokens.
@@ -163,7 +162,3 @@ Possible enhancements include:
 * Token cost estimation
 
 ---
-
-## 📜 License
-
-MIT License
