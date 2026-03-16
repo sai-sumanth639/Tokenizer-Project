@@ -1,132 +1,169 @@
-Tokenizer Comparison Visualizer
+# 🧠 Tokenizer Comparison Visualizer
 
-This project demonstrates how different NLP tokenizers break down the same input text into tokens. It helps visualize how models like BERT, GPT-2, T5, and GPT-4 tokenizers interpret text differently.
+![Python](https://img.shields.io/badge/Python-3.8+-blue)
+![Transformers](https://img.shields.io/badge/HuggingFace-Transformers-yellow)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Status](https://img.shields.io/badge/Project-Learning-orange)
 
-The script prints tokens in color-coded format in the terminal so you can easily observe token boundaries.
+A simple Python project that demonstrates how different NLP tokenizers split the same input text into tokens.
 
-Project Overview
+This script compares tokenizers used by modern language models such as **BERT, GPT-2, GPT-4 tokenizers, and T5**, and prints tokens in **color-coded blocks** in the terminal so token boundaries are easy to see.
 
-Natural Language Processing models do not understand raw text directly.
-Instead, they convert text into tokens (smaller pieces of text) and then map them to token IDs.
+---
 
-Different models use different tokenization strategies such as:
+## 📌 Why This Project Exists
 
-WordPiece (BERT)
+When working with **LLMs, embeddings, or prompt engineering**, everything is measured in **tokens**.
 
-Byte Pair Encoding (GPT-2)
+Most developers never actually see how text is converted into tokens.
+This project helps visualize that process.
 
-SentencePiece (T5)
+It helps you understand:
 
-Other modern tokenizers
+* How tokenization works
+* Why token counts differ between models
+* Why prompt costs vary between APIs
+* How casing, unicode, numbers, and symbols affect tokenization
 
-This project compares these tokenizers using the same input text.
+---
 
-Features
+## 🧩 Tokenizers Compared
 
-Tokenizes text using multiple popular models
+This script compares the following tokenizers from HuggingFace Transformers:
 
-Displays token IDs
+| Model                  | Tokenization Type      |
+| ---------------------- | ---------------------- |
+| `bert-base-cased`      | WordPiece              |
+| `bert-base-uncased`    | WordPiece (lowercased) |
+| `gpt2`                 | Byte Pair Encoding     |
+| `google/flan-t5-small` | SentencePiece          |
+| `Xenova/gpt-4`         | GPT-style tokenizer    |
 
-Decodes tokens back into readable text
+---
 
-Shows tokens in colored blocks for easy visualization
-
-Compares tokenization across different models
-
-Tokenizers Used
-
-The script currently compares the following tokenizers:
-
-bert-base-cased
-
-bert-base-uncased
-
-Xenova/gpt-4
-
-gpt2
-
-google/flan-t5-small
-
-Installation
+## ⚙️ Installation
 
 Clone the repository:
 
+```bash
 git clone https://github.com/your-username/tokenizer-visualizer.git
 cd tokenizer-visualizer
+```
 
-Install dependencies:
+Install required dependencies:
 
+```bash
 pip install transformers
+```
 
 (Optional but recommended)
 
+```bash
 pip install torch
-Usage
+```
+
+---
+
+## 🚀 Usage
 
 Run the script:
 
+```bash
 python tokenizer_visualizer.py
+```
 
-Example input text inside the script:
+The program will tokenize the input text using different tokenizers and display tokens in colored blocks in the terminal.
 
+---
+
+## ✏️ Example Input Text
+
+The script tests tokenizers using a mixed input containing uppercase text, unicode characters, emojis, operators, numbers, and whitespace.
+
+```
 English and CAPITALIZATION
 🎵 鸟
 show_tokens False None elif == >= else: two tabs:"    " Three tabs: "       "
 12.0*50=600
-Example Output
+```
+
+---
+
+## 🖥 Example Output
+
+```
 Tokenizer: bert-base-cased
 Vocab length: 28996
 
-[CLS] English and CAPITALIZATION 🎵 鸟 show _ tokens ...
+[CLS] English and CAPITALIZATION 🎵 鸟 show_tokens False None elif == >= else
+```
 
-Each token is displayed with a different background color in the terminal.
+Each token is printed with a different background color to make token boundaries visible.
 
-How It Works
+---
 
-Load tokenizer using HuggingFace Transformers
+## 🧪 How It Works
 
-AutoTokenizer.from_pretrained("bert-base-cased")
+### Load Tokenizer
 
-Convert sentence into token IDs
+```python
+tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
+```
 
+### Convert Text to Token IDs
+
+```python
 token_ids = tokenizer(sentence).input_ids
+```
 
-Decode tokens back to text
+### Decode Token IDs
 
+```python
 tokenizer.decode(token_id)
+```
 
-Print tokens with ANSI colored backgrounds.
+### Display Colored Tokens
 
-Project Structure
+The script prints tokens using ANSI terminal color codes so each token appears with a different background color.
+
+---
+
+## 📂 Project Structure
+
+```
 tokenizer-visualizer
 │
 ├── tokenizer_visualizer.py
 └── README.md
-Why This Is Useful
+```
 
-Understanding tokenization helps with:
+---
 
-Prompt engineering
+## 💡 Why Tokenization Matters
 
-LLM cost estimation (tokens = cost)
+Understanding tokenization is important because it affects:
 
-Debugging NLP models
+* LLM API costs (tokens = cost)
+* Prompt length limits
+* Model performance
+* Embedding quality
 
-Learning how transformers process text
+Different models tokenize the same text very differently.
 
-Example Learning Insight
+---
 
-The same sentence may produce very different token counts depending on the tokenizer.
-This directly impacts model performance, latency, and API cost.
+## 🔮 Future Improvements
 
-Future Improvements
+Possible enhancements include:
 
-Possible enhancements:
+* Token count comparison table
+* Web-based visualization UI
+* Support for more models (LLaMA, Mistral, Claude)
+* Token statistics and analysis
+* Token cost estimation
 
-Token count comparison table
+---
 
-Visualization in a web UI
+## 📜 License
 
-Token length statistics
-
-Support for more models (LLaMA, Mistral, Claude)
+MIT License
